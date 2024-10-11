@@ -1,0 +1,58 @@
+version: '3.1'
+services:
+  myapp:
+    image: jyotideveda/basic-nodejs-server:latest
+    container_name: express-app
+    restart: always
+    ports:
+      - '3000:3000'
+    depends_on:
+      - postgres
+      - redis
+
+  postgres:
+    image: postgres:latest
+    restart: always
+    container_name: postgres-db
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345678
+      PGDATA: /var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+
+  pgadmin:
+    image: elestio/pgadmin:latest
+    restart: always
+    container_name: pg-admin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: jyoti@gkmit.co
+      PGADMIN_DEFAULT_PASSWORD: abc#12345
+      PGADMIN_LISTEN_PORT: 8080
+    ports:
+      - '8080:8080'
+
+
+
+  redis:
+    image: bitnami/redis:latest
+    container_name: redis-cache
+    ports:
+      - '6379:6379'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+
+  
+    
+
+
+
+
+
+
+
+
+
+
+
