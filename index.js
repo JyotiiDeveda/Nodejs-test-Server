@@ -5,7 +5,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.get('/api/health-checkup', (req, res) => {
-	res.status(200).send(`<h1> This is application health checkup endpoint </h1>`)
+	res.status(200).json({ message: "I am a nodejs Server"})
 })
 
 
